@@ -1,0 +1,27 @@
+<mat-card class="card">
+  <mat-card-header [style.backgroundColor]="'gray'"> 
+    <div mat-card-avatar class="card-header-image"></div>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="example-container">
+      <mat-tab-group class="tab-group">
+        <mat-tab label="SignIn">
+          <ng-template mat-tab-label>
+            <mat-icon>security</mat-icon>
+          </ng-template>
+          <div class="tab-content">
+            <app-sign-in></app-sign-in>
+          </div>
+        </mat-tab>
+        <mat-tab label="SignUp">
+          <ng-template mat-tab-label>
+            <mat-icon>supervisor_account</mat-icon>
+          </ng-template>
+          <div class="tab-content">
+            <app-sing-up></app-sing-up>
+          </div>  
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </mat-card-content>
+</mat-card>
