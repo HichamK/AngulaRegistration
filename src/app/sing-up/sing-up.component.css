@@ -1,0 +1,33 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+  
+  .example-container form {
+    margin-bottom: 20px;
+  }
+  
+  .example-container form > * {
+    margin: 5px 0;
+  }
+  
+  .example-container .mat-radio-button {
+    margin: 0 5px;
+  }
+
+  /*Card*/
+  .card {
+    max-width: 500px;
+    margin: 0 auto; 
+    float: none; 
+    margin-bottom: 10px;
+  }
+
+  .card-header-image {
+    background-image: url('../../assets/images/softeamGroup.jpg');
+    background-size: cover;
+  }

@@ -1,0 +1,64 @@
+<form #formSingUp="ngForm">   
+
+  <mat-card class="card">
+    <mat-card-header [style.backgroundColor]="'gray'"> 
+      <div mat-card-avatar class="card-header-image"></div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="example-container">
+          <mat-form-field>
+              <mat-label>Enter user name</mat-label>
+            <input matInput [(ngModel)]="user.UserName" name="UserName" placeholder="User name" required>
+          </mat-form-field>
+
+          <mat-form-field>
+              <input matInput [(ngModel)]="user.Password" #Password="ngModel" name="Password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required minlength="3">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+              <mat-error *ngIf="Password.errors?.minlength">Your password must be at least 3 characters long. Please try another</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+              <mat-label>Enter your first name</mat-label>
+            <input matInput [(ngModel)]="user.FirstName" name="FirstName" placeholder="First name" required>
+          </mat-form-field>
+        
+          <mat-form-field>
+            <mat-label>Enter your last name</mat-label>
+            <input matInput [(ngModel)]="user.LastName" name="lastName" placeholder="Last name" required>
+          </mat-form-field>
+
+          <div class="example-container">
+              <mat-form-field>
+                <mat-label>Enter your email</mat-label>
+                <input matInput [(ngModel)]="user.Email" placeholder="Email" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+              </mat-form-field>
+          </div>
+          
+          <div>
+            <mat-radio-group [(ngModel)]="user.Gender" name="gender" required>
+              <mat-radio-button value="female">Female</mat-radio-button>
+              <mat-radio-button value="male">Male</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <mat-form-field>
+            <mat-select [(ngModel)]="user.Titre" name="titre" required>
+              <mat-option>-- None --</mat-option>
+              <mat-option value="MOA">Consultant MOA</mat-option>
+              <mat-option value="MOE">Consultant MOE</mat-option>
+              <mat-option value="COM">Ingénieur commercial</mat-option>
+              <mat-option value="MAN">Manager</mat-option>
+            </mat-select>
+          <mat-placeholder><mat-icon>list</mat-icon> <b> Titre</b></mat-placeholder>
+        </mat-form-field>
+
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="registerUser()" [disabled]="formSingUp.invalid || email.invalid || disableAfterSend">Create Account</button>
+      <button mat-raised-button color="primary" (click)="resetForm(formSingUp)">Reset form</button>
+    </mat-card-actions>
+  </mat-card>
+  
+</form>
