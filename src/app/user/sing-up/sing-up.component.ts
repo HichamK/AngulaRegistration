@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, NgForm } from '@angular/forms';
-import { User } from '../Models/user.model';
-import { UserService } from '../user.service';
 import { ToastrService } from 'ngx-toastr';
 import 'rxjs/add/operator/finally';
+import { User } from '../../shared/models/user.model';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-sing-up',

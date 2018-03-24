@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { User } from './Models/user.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import 'rxjs/add/operator/catch';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class UserService {

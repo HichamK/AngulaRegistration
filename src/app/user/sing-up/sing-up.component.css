@@ -28,6 +28,6 @@
   }
 
   .card-header-image {
-    background-image: url('../../assets/images/softeamGroup.jpg');
+    background-image: url('../../../assets/images/softeamGroup.jpg');
     background-size: cover;
   }

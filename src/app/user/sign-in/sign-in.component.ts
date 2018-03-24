@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
+  hide: boolean = true;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSubmit(UserName: string, Password: string){
+    console.log("Bienvenue: " + UserName);
+  }
 }

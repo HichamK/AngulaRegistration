@@ -1,0 +1,24 @@
+<form #formSingIn="ngForm" (ngSubmit)="onSubmit(UserName.value, Password.value)">   
+
+  <mat-card class="card">
+    <mat-card-content>
+      <div class="example-container">
+          <mat-form-field>
+              <mat-label>Enter user name</mat-label>
+            <input matInput #UserName ngModel name="UserName" placeholder="User name" required>
+          </mat-form-field>
+
+          <mat-form-field>
+              <input matInput #Password ngModel name="Password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required minlength="3">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+              <mat-error *ngIf="Password.errors?.minlength">Your password must be at least 3 characters long. Please try another</mat-error>
+          </mat-form-field>
+
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" [disabled]="formSingIn.invalid">Login</button>
+    </mat-card-actions>
+  </mat-card>
+  
+</form>
