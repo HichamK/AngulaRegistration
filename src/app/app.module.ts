@@ -10,13 +10,17 @@ import { ToastrModule } from 'ngx-toastr';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { UserComponent } from './user/user.component';
 import { UserService } from './shared/services/user.service';
+import { HomeComponent } from './home/home.component';
+import { RouterModule } from '@angular/Router';
+import { routes } from './shared/routeConfig';
 
 @NgModule({
   declarations: [
     AppComponent,
     SingUpComponent,
     SignInComponent,
-    UserComponent
+    UserComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +30,7 @@ import { UserService } from './shared/services/user.service';
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
+    RouterModule.forRoot(routes),
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

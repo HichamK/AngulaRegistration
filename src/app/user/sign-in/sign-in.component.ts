@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../shared/services/user.service';
+import { Router } from '@angular/Router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,12 +12,20 @@ export class SignInComponent implements OnInit {
 
   hide: boolean = true;
 
-  constructor() { }
+  constructor(private userService: UserService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
   }
 
-  onSubmit(UserName: string, Password: string){
-    console.log("Bienvenue: " + UserName);
+  onSubmit(userName: string, password: string){
+    this.userService.userAuthentification(userName, password).subscribe(
+      (data :  any) => {
+        localStorage.setItem("userToken", data.access_token);
+        this.router.navigate(['/home']);
+      },
+      err => {
+        this.toastr.error(err.statusText);
+      }
+    );
   }
 }

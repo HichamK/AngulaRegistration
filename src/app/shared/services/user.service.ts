@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import 'rxjs/add/operator/catch';
 import { User } from '../models/user.model';
@@ -24,6 +24,13 @@ export class UserService {
 
     return this.http.post(this.rootUrl + "/api/Account/Register", body)
     .catch(this.handleError);
+  }
+
+  userAuthentification(userName, password){
+    let data = "username=" + userName + "&password=" + password + "&grant_type=password";
+    let header = new HttpHeaders({'Content-Type' : 'application/x-www-urlencoded'});
+
+    return this.http.post(this.rootUrl + "/token", data, {headers : header});
   }
 
   handleError(err: HttpErrorResponse) {
