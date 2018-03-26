@@ -1,2 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Card */
+.card-container > * {
+  width: 100%;
+}
+
+.card-container form {
+  margin-bottom: 20px;
+}
+
+.card-container form > * {
+  margin: 5px 0;
+}
+
+.card-container .mat-radio-button {
+  margin: 0 5px;
+}

@@ -13,6 +13,8 @@ import { UserService } from './shared/services/user.service';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/Router';
 import { routes } from './shared/routeConfig';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { MatSidenavContainer } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,7 @@ import { routes } from './shared/routeConfig';
     ToastrModule.forRoot(),
     RouterModule.forRoot(routes),
   ],
-  providers: [UserService],
+  providers: [UserService, MediaMatcher],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

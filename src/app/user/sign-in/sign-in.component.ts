@@ -24,7 +24,7 @@ export class SignInComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       err => {
-        this.toastr.error(err.statusText);
+        this.toastr.error("There were one or more errors in your submission. Please correct the marked fields below.");
       }
     );
   }
