@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { SingUpComponent } from './user/sing-up/sing-up.component';
 import { MaterialDesignModule } from './material-design/material-design.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { UserComponent } from './user/user.component';
@@ -15,6 +15,9 @@ import { RouterModule } from '@angular/Router';
 import { routes } from './shared/routeConfig';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenavContainer } from '@angular/material';
+import { AuthGuard } from './auth/auth.guard';
+import { AccountComponent } from './account/account.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { MatSidenavContainer } from '@angular/material';
     SingUpComponent,
     SignInComponent,
     UserComponent,
-    HomeComponent
+    HomeComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,12 @@ import { MatSidenavContainer } from '@angular/material';
     ToastrModule.forRoot(),
     RouterModule.forRoot(routes),
   ],
-  providers: [UserService, MediaMatcher],
+  providers: [UserService, MediaMatcher, AuthGuard, 
+  {
+    provide : HTTP_INTERCEPTORS,
+    useClass : AuthInterceptor,
+    multi : true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

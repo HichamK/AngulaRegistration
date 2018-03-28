@@ -22,15 +22,20 @@ export class UserService {
       Titre: user.Titre,
     }
 
-    return this.http.post(this.rootUrl + "/api/Account/Register", body)
+    let reqHeader = new HttpHeaders({'No-Auth' : 'True'});
+    return this.http.post(this.rootUrl + "/api/Account/Register", body, { headers : reqHeader})
     .catch(this.handleError);
   }
 
   userAuthentification(userName, password){
     let data = "username=" + userName + "&password=" + password + "&grant_type=password";
-    let header = new HttpHeaders({'Content-Type' : 'application/x-www-urlencoded'});
-
+    let header = new HttpHeaders({'Content-Type' : 'application/x-www-urlencoded', 'No-Auth' : 'True'});
+ 
     return this.http.post(this.rootUrl + "/token", data, {headers : header});
+  }
+
+  getUserClaims(){
+    return this.http.get(this.rootUrl + "/api/account/GetUserClaims");
   }
 
   handleError(err: HttpErrorResponse) {

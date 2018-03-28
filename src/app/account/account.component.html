@@ -1,0 +1,14 @@
+<div *ngIf="userClaims; else userNotFound">
+    <span>User Name : {{ userClaims.UserName }}</span>
+    <br>
+    <span>First Name : {{ userClaims.FirstName }}</span>
+    <br>
+    <span>Last Name : {{ userClaims.LastName }}</span>
+    <br>
+    <span>Email : {{ userClaims.Email }}</span>
+    <br>
+    <span>Logged on : {{ userClaims.LoggedOn }}</span>
+</div>
+<ng-template #userNotFound>
+    User not found
+</ng-template>
