@@ -13,6 +13,8 @@ export class HomeComponent implements OnInit {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 
+  readonly fullName : string = localStorage.getItem("fullName");
+
   readonly appMenu : Array<AppMenu> = [
     { routerLink : '.', icon : 'home'},
     { routerLink : 'account', icon : 'perm_identity'},

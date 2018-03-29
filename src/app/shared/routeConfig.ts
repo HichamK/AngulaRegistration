@@ -5,11 +5,12 @@ import { HomeComponent } from "../home/home.component";
 import { UserComponent } from "../user/user.component";
 import { AuthGuard } from "../auth/auth.guard";
 import { AccountComponent } from "../account/account.component";
+import { DefaultTemplateComponent } from "../default-template/default-template.component";
 
 export const routes : Routes = [
     { path: 'home', component: HomeComponent, canActivate : [AuthGuard],
       children: [
-        //{path: '', redirectTo: 'account', pathMatch : 'full'}, 
+        {path: '', component : DefaultTemplateComponent}, 
         {path: 'account', component: AccountComponent}, 
         ]
     },

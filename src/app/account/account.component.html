@@ -1,13 +1,16 @@
-<div *ngIf="userClaims; else userNotFound">
-    <span>User Name : {{ userClaims.UserName }}</span>
-    <br>
-    <span>First Name : {{ userClaims.FirstName }}</span>
-    <br>
-    <span>Last Name : {{ userClaims.LastName }}</span>
-    <br>
-    <span>Email : {{ userClaims.Email }}</span>
-    <br>
-    <span>Logged on : {{ userClaims.LoggedOn }}</span>
+<div class="account" *ngIf="userClaims; else userNotFound">
+    <dl class="dl-horizontal">
+        <dt>User Name</dt>
+        <dd>{{ userClaims.UserName }}</dd>
+        <dt>First Name</dt>
+        <dd>{{ userClaims.FirstName }}</dd>
+        <dt>Last Name</dt>
+        <dd>{{ userClaims.LastName }}</dd>
+        <dt>Email</dt>
+        <dd>{{ userClaims.Email }}</dd>
+        <dt>Logged on</dt>
+        <dd>{{ userClaims.LoggedOn }}</dd>
+    </dl>
 </div>
 <ng-template #userNotFound>
     User not found

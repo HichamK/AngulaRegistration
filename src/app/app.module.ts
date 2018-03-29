@@ -18,6 +18,7 @@ import { MatSidenavContainer } from '@angular/material';
 import { AuthGuard } from './auth/auth.guard';
 import { AccountComponent } from './account/account.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { DefaultTemplateComponent } from './default-template/default-template.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     SignInComponent,
     UserComponent,
     HomeComponent,
-    AccountComponent
+    AccountComponent,
+    DefaultTemplateComponent
   ],
   imports: [
     BrowserModule,
