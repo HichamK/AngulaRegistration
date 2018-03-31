@@ -38,6 +38,14 @@ export class UserService {
     return this.http.get(this.rootUrl + "/api/account/GetUserClaims");
   }
 
+  getAllUsers(){
+    return this.http.get<User[]>(this.rootUrl + '/api/account/GetUsers');
+  }
+
+  deleteUser(userId : string){
+    return this.http.delete(this.rootUrl + '/api/Account/DeleteUser?userId=' + userId);
+  }
+
   handleError(err: HttpErrorResponse) {
     return new ErrorObservable(err.error);
   }

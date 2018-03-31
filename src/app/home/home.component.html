@@ -13,17 +13,17 @@
       <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                    [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
         <mat-nav-list>
-          <a mat-list-item routerLinkActive="active" *ngFor="let subMenu of appMenu" (click)="subMenu.routerLink ? null : logOut()" [routerLink]="subMenu.routerLink ? subMenu.routerLink : null"><mat-icon matListIcon>{{subMenu.icon}}</mat-icon></a>
+          <a mat-list-item routerLinkActive="active" title="{{ subMenu.title }}" *ngFor="let subMenu of appMenu" (click)="subMenu.routerLink ? null : logOut()" [routerLink]="subMenu.routerLink ? subMenu.routerLink : null"><mat-icon matListIcon>{{subMenu.icon}}</mat-icon></a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
-          <mat-card class="card">
-              <mat-card-content>
-                  <div class="card-container">
-                      <router-outlet></router-outlet>
-                  </div>
-              </mat-card-content>
-          </mat-card>
+        <mat-card class="card">
+            <mat-card-content>
+                <div class="card-container">
+                    <router-outlet></router-outlet>
+                </div>
+            </mat-card-content>
+        </mat-card>
       </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

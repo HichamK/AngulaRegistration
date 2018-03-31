@@ -16,14 +16,14 @@ export class HomeComponent implements OnInit {
   readonly fullName : string = localStorage.getItem("fullName");
 
   readonly appMenu : Array<AppMenu> = [
-    { routerLink : '.', icon : 'home'},
-    { routerLink : 'account', icon : 'perm_identity'},
-    { routerLink : '.', icon : 'receipt'},
-    { routerLink : '.', icon : 'timeline'},
-    { routerLink : '.', icon : 'turned_in'},
-    { routerLink : '.', icon : 'report_problem'},
-    { routerLink : '.', icon : 'help'},
-    { icon : 'exit_to_app'},
+    { routerLink : '.', icon : 'home', title : 'Home'},
+    { routerLink : 'account', icon : 'perm_identity', title : 'Account'},
+    { routerLink : 'settings', icon : 'settings_applications', title : 'Settings'},
+    { routerLink : '.', icon : 'history', title : 'History'},
+    { routerLink : '.', icon : 'report_problem', title : 'Report problem'},
+    { routerLink : '.', icon : 'help', title : 'Help'},
+    { routerLink : '.', icon : 'feedback', title : 'Send feedback'},
+    { icon : 'exit_to_app', title : 'Sign out'},
   ];
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router : Router) {

@@ -14,11 +14,12 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/Router';
 import { routes } from './shared/routeConfig';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { MatSidenavContainer } from '@angular/material';
 import { AuthGuard } from './auth/auth.guard';
 import { AccountComponent } from './account/account.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { DefaultTemplateComponent } from './default-template/default-template.component';
+import { SettingsComponent } from './settings/settings.component';
+import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,12 @@ import { DefaultTemplateComponent } from './default-template/default-template.co
     UserComponent,
     HomeComponent,
     AccountComponent,
-    DefaultTemplateComponent
+    DefaultTemplateComponent,
+    SettingsComponent,
+    ConfirmationDialogComponent,
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,

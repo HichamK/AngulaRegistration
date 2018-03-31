@@ -1,0 +1,63 @@
+<div class="data-table-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" >
+  </mat-form-field>
+  <span class="pull-right">
+      <a class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add user</a>
+  </span>
+</div>
+
+<div class="data-table-container mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <!-- UserName Column -->
+    <ng-container matColumnDef="UserName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> User Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.UserName}} </mat-cell>
+    </ng-container>
+
+    <!-- FirstName Column -->
+    <ng-container matColumnDef="FirstName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.FirstName}} </mat-cell>
+    </ng-container>
+
+    <!-- LastName Column -->
+    <ng-container matColumnDef="LastName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.LastName}} </mat-cell>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="Email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.Email}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Action">
+        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+        <mat-cell *matCellDef="let row; let i = index">
+          <a class="btn btn-info btn-xs" role="button" (click)="getUserDetails(row)" title="Details"><span class="glyphicon glyphicon-search"></span></a>
+          <a class="btn btn-warning btn-xs" role="button" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+          <a class="btn btn-danger btn-xs" role="button" (click)="openDialog(row, i)" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+<br>
+<div class="account-details" *ngIf="user != null">
+  <mat-card class="card">
+      <mat-card-content>
+          <div class="card-container">
+              <app-account [selectedUser]="user"></app-account>
+          </div>
+      </mat-card-content>
+  </mat-card>
+</div>

@@ -29,7 +29,6 @@ export class SingUpComponent implements OnInit {
   }
 
   registerUser() {
-    console.log(this.user);
     this.disableAfterSend = true;
 
     this.userService.registerUser(this.user).finally(() => {

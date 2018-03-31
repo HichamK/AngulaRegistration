@@ -6,12 +6,14 @@ import { UserComponent } from "../user/user.component";
 import { AuthGuard } from "../auth/auth.guard";
 import { AccountComponent } from "../account/account.component";
 import { DefaultTemplateComponent } from "../default-template/default-template.component";
+import { SettingsComponent } from "../settings/settings.component";
 
 export const routes : Routes = [
     { path: 'home', component: HomeComponent, canActivate : [AuthGuard],
       children: [
         {path: '', component : DefaultTemplateComponent}, 
         {path: 'account', component: AccountComponent}, 
+        {path: 'settings', component: SettingsComponent}, 
         ]
     },
     { path : 'user', component : UserComponent},
