@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class SignInComponent implements OnInit {
 
   hide: boolean = true;
+  disableAfterSend : boolean = false;
 
   constructor(private userService: UserService, private router: Router, private toastr: ToastrService) { }
 
@@ -18,7 +19,11 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit(userName: string, password: string){
-    this.userService.userAuthentification(userName, password).subscribe(
+    this.disableAfterSend = true;
+    
+    this.userService.userAuthentification(userName, password).finally(() => {
+      this.disableAfterSend = false;
+    }).subscribe(
       (data :  any) => {
         localStorage.setItem("userToken", data.access_token);
         localStorage.setItem("fullName", data.fullname);
