@@ -2,12 +2,14 @@
     <dl class="dl-horizontal">
         <dt>User Name</dt>
         <dd>{{ userClaims.UserName }}</dd>
-        <dt>First Name</dt>
-        <dd>{{ userClaims.FirstName }}</dd>
-        <dt>Last Name</dt>
-        <dd>{{ userClaims.LastName }}</dd>
-        <dt>Email</dt>
-        <dd>{{ userClaims.Email }}</dd>
+        <i *ngIf="selectedUser == null">
+            <dt>First Name</dt>
+            <dd>{{ userClaims.FirstName }}</dd>
+            <dt>Last Name</dt>
+            <dd>{{ userClaims.LastName }}</dd>
+            <dt>Email</dt>
+            <dd>{{ userClaims.Email }}</dd>
+        </i>
         <dt>Gender</dt>
         <dd>{{ userClaims.Gender }}</dd>
         <dt>Titre</dt>

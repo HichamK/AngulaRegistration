@@ -38,7 +38,7 @@
         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
         <mat-cell *matCellDef="let row; let i = index">
           <a class="btn btn-info btn-xs" role="button" (click)="getUserDetails(row)" title="Details"><span class="glyphicon glyphicon-search"></span></a>
-          <a class="btn btn-warning btn-xs" role="button" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+          <a class="btn btn-warning btn-xs" role="button" (click)="showUserToEdit(row)" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
           <a class="btn btn-danger btn-xs" role="button" (click)="openDialog(row, i)" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
         </mat-cell>
     </ng-container>
@@ -52,12 +52,61 @@
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
 <br>
-<div class="account-details" *ngIf="user != null">
+<!-- User details -->
+<div class="account-details" *ngIf="user != null && showDetails">
   <mat-card class="card">
+      <mat-card-header>
+          <div mat-card-avatar><i class="material-icons md-48">account_circle</i></div>
+          <mat-card-title>{{user.FirstName + ' ' + user.LastName}}</mat-card-title>
+          <mat-card-subtitle>{{user.Email}}</mat-card-subtitle>
+      </mat-card-header>
       <mat-card-content>
           <div class="card-container">
               <app-account [selectedUser]="user"></app-account>
           </div>
       </mat-card-content>
   </mat-card>
+</div>
+
+<!-- User to edit -->
+<div #modal id="editModal" class="modal">
+  <div class="modal-content">
+    <div *ngIf="user != null && editUser">
+    <form #formEditUser="ngForm">   
+        <mat-card class="card">
+          <mat-card-header class="pull-right"> 
+            <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </mat-card-header>
+
+          <mat-card-content>
+            <div class="card-container">
+                <mat-form-field>
+                    <mat-label>Enter your first name</mat-label>
+                  <input matInput [(ngModel)]="user.FirstName" name="FirstName" placeholder="First name" required>
+                </mat-form-field>
+              
+                <mat-form-field>
+                  <mat-label>Enter your last name</mat-label>
+                  <input matInput [(ngModel)]="user.LastName" name="lastName" placeholder="Last name" required>
+                </mat-form-field>
+      
+                <div class="email-container">
+                    <mat-form-field>
+                      <mat-label>Enter your email</mat-label>
+                      <input matInput [(ngModel)]="user.Email" placeholder="Email" [formControl]="email" required>
+                      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="updateUser()" [disabled]="formEditUser.invalid || email.invalid">Update</button>
+            <button mat-raised-button color="primary" (click)="closeModal()">Close</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+  </div>
 </div>

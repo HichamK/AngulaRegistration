@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { User } from '../shared/models/user.model';
 import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-settings',
@@ -15,9 +16,13 @@ export class SettingsComponent implements OnInit {
   displayedColumns = ['UserName', 'FirstName', 'LastName', 'Email', 'Action'];
   dataSource = new MatTableDataSource();
   user : User;
+  showDetails : boolean;
+  editUser : boolean;
+  email = new FormControl('', [Validators.required, Validators.email]);
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('modal') editModal: any;
 
   constructor(private userService : UserService, private toastr : ToastrService, 
               private dialog: MatDialog, private snackBar: MatSnackBar) { }
@@ -50,10 +55,30 @@ export class SettingsComponent implements OnInit {
 
   getUserDetails(user : User){
     this.user = user;
+    this.showDetails = true;
+    this.editUser = false;
+  }
+
+  showUserToEdit(user : User){
+    this.user = user;
+    this.showDetails = false;
+    this.editUser = true;
+    this.editModal.nativeElement.style.display = 'block';
+  }
+
+  closeModal(){
+    this.user = null;
+    this.editModal.nativeElement.style.display = 'none';
+  }
+
+  updateUser(){
+    //TODO update user
+    window.alert(this.user.Id);
   }
 
   openDialog(user: User, index: number): void {       
     this.user = null;
+    this.showDetails = false;
     let fullName = user.FirstName + ' ' + user.LastName;
     
     let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
@@ -84,5 +109,10 @@ export class SettingsComponent implements OnInit {
   deleteFieldValue(index) {
     this.dataSource.data.splice(index, 1);
     this.dataSource.data = this.dataSource.data;
+  }
+
+  getErrorMessage() {
+    return this.email.hasError('required') ? 'You must enter a value' :
+        this.email.hasError('email') ? 'Not a valid email' : '';
   }
 }
